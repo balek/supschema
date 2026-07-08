@@ -1,0 +1,27 @@
+{
+  "name": "@supschema/codegen-utils",
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "development": "./index.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "development": "./*",
+      "default": "./dist/*"
+    }
+  },
+  "dependencies": {
+    "@alloy-js/core": "^0.24.1",
+    "@alloy-js/typescript": "^0.24.0",
+    "@supschema/core": "workspace:*",
+    "remeda": "^2.39.0"
+  },
+  "optionalDependencies": {
+    "@vue/reactivity": "^3.5.39"
+  }
+}

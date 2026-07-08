@@ -1,0 +1,30 @@
+{
+  "name": "@supschema/openapi",
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "development": "./index.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "development": "./*",
+      "default": "./dist/*"
+    }
+  },
+  "dependencies": {
+    "@supschema/codegen-utils": "workspace:*",
+    "@supschema/core": "workspace:*",
+    "@supschema/json-schema": "workspace:*",
+    "remeda": "^2.39.0"
+  },
+  "optionalDependencies": {
+    "@supschema/common-types": "workspace:*"
+  },
+  "devDependencies": {
+    "@hey-api/spec-types": "^0.2.0"
+  }
+}

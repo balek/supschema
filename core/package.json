@@ -1,0 +1,18 @@
+{
+  "name": "@supschema/core",
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "development": "./index.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "development": "./*",
+      "default": "./dist/*"
+    }
+  }
+}

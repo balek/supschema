@@ -1,0 +1,29 @@
+{
+  "name": "@supschema/protobuf",
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "development": "./index.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "development": "./*",
+      "default": "./dist/*"
+    }
+  },
+  "dependencies": {
+    "@supschema/codegen-utils": "workspace:*",
+    "@supschema/core": "workspace:*",
+    "@vue/reactivity": "^3.5.39",
+    "protobufjs": "^8.7.0",
+    "protobufjs-cli": "^2.6.0",
+    "remeda": "^2.39.0"
+  },
+  "optionalDependencies": {
+    "@supschema/common-types": "workspace:*"
+  }
+}

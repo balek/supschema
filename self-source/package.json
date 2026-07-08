@@ -1,0 +1,24 @@
+{
+  "name": "@supschema/self-source",
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "development": "./index.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "development": "./*",
+      "default": "./dist/*"
+    }
+  },
+  "dependencies": {
+    "@supschema/codegen-utils": "workspace:*",
+    "@supschema/core": "workspace:*",
+    "@alloy-js/core": "^0.24.1",
+    "@alloy-js/typescript": "^0.24.0"
+  }
+}
