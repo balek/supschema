@@ -23,5 +23,11 @@
   },
   "optionalDependencies": {
     "@vue/reactivity": "^3.5.39"
-  }
+  },
+  "author": "Alexey Balekhov <alexeybalekhov@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balek/supschema.git"
+  },
+  "license": "MIT"
 }

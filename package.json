@@ -7,10 +7,14 @@
     "url": "git+https://github.com/balek/supschema.git"
   },
   "license": "MIT",
-  "description": "",
   "type": "module",
-  "files": [
-    "dist"
+  "workspaces": [
+    "codegen-utils",
+    "core",
+    "common-types",
+    "applications/*",
+    "schema-serialization",
+    "self-source"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",

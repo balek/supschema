@@ -20,5 +20,11 @@
     "@supschema/core": "workspace:*",
     "@alloy-js/core": "^0.24.1",
     "@alloy-js/typescript": "^0.24.0"
-  }
+  },
+  "author": "Alexey Balekhov <alexeybalekhov@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balek/supschema.git"
+  },
+  "license": "MIT"
 }

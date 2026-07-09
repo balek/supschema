@@ -25,5 +25,11 @@
   },
   "devDependencies": {
     "@hey-api/spec-types": "^0.2.0"
-  }
+  },
+  "author": "Alexey Balekhov <alexeybalekhov@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balek/supschema.git"
+  },
+  "license": "MIT"
 }

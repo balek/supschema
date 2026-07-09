@@ -17,5 +17,11 @@
   },
   "dependencies": {
     "@supschema/core": "workspace:*"
-  }
+  },
+  "author": "Alexey Balekhov <alexeybalekhov@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balek/supschema.git"
+  },
+  "license": "MIT"
 }
