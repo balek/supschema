@@ -7,11 +7,11 @@
   ],
   "exports": {
     ".": {
-      "development": "./index.ts",
+      "subschema-dev": "./index.ts",
       "default": "./dist/index.js"
     },
     "./*": {
-      "development": "./*",
+      "subschema-dev": "./*",
       "default": "./dist/*"
     }
   }

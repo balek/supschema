@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "customConditions": ["development"]
+    "customConditions": ["subschema-dev"]
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules", "dist"]
