@@ -48,7 +48,7 @@ importers:
 
   core: {}
 
-  extensions/json-schema:
+  applications/json-schema:
     dependencies:
       '@supschema/codegen-utils':
         specifier: workspace:*
@@ -68,7 +68,7 @@ importers:
         specifier: workspace:*
         version: link:../../common-types
 
-  extensions/openapi:
+  applications/openapi:
     dependencies:
       '@supschema/codegen-utils':
         specifier: workspace:*
@@ -91,7 +91,7 @@ importers:
         specifier: workspace:*
         version: link:../../common-types
 
-  extensions/protobuf:
+  applications/protobuf:
     dependencies:
       '@supschema/codegen-utils':
         specifier: workspace:*
@@ -116,7 +116,7 @@ importers:
         specifier: workspace:*
         version: link:../../common-types
 
-  extensions/ts-infer:
+  applications/ts-infer:
     dependencies:
       '@supschema/core':
         specifier: workspace:*

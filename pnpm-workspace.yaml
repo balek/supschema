@@ -2,7 +2,7 @@ packages:
   - codegen-utils
   - core
   - common-types
-  - extensions/*
+  - applications/*
   - schema-serialization
   - self-source
 allowBuilds:
