@@ -1,5 +1,5 @@
 import { createType, defineConstructor, Schema, SchemaOptions } from '@supschema/core';
-import { OpenApiOrJsonSchemaExtension } from './extension';
+import { OpenApiOrJsonSchemaExtension } from './extension.js';
 
 export type HttpMethod = 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch' | 'trace';
 

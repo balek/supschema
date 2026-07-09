@@ -1,6 +1,6 @@
 import { computed, shallowReactive } from '@vue/reactivity';
-import { Registry } from './registry';
-import { currentNode, GenerationNode } from './dynamicTree';
+import { Registry } from './registry.js';
+import { currentNode, GenerationNode } from './dynamicTree.js';
 import { extractOptionsModification, Schema } from '@supschema/core';
 import { isDeepEqual } from 'remeda';
 

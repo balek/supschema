@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { generateJsonSchemas } from '.';
+import { generateJsonSchemas } from './index.js';
 import { S } from '@supschema/common-types';
 
 it('JSON Schema with references', async () => {

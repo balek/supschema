@@ -1,3 +1,3 @@
-export * from './Schema';
-export * from './optionsModification';
-export * from './pathGetter';
+export * from './Schema.js';
+export * from './optionsModification.js';
+export * from './pathGetter.js';

@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { extractOptionsModification, modifyOpts } from './optionsModification';
-import { Schema } from './Schema';
+import { extractOptionsModification, modifyOpts } from './optionsModification.js';
+import { Schema } from './Schema.js';
 
 it('returns a new schema with merged options and preserves prototype', () => {
   const base = Schema({ foo: 'bar' });

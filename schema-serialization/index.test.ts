@@ -1,6 +1,6 @@
 import { it, expect } from 'vitest';
 import { Schema } from '@supschema/core';
-import { deserializeSchemaValue, serializeSchema } from './index';
+import { deserializeSchemaValue, serializeSchema } from './index.js';
 import { testPathGetter } from '@supschema/core/testUtils.js';
 
 it('serializes primitive schema', () => {

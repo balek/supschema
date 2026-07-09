@@ -1,3 +1,3 @@
-export * from './integer';
-export * from './float';
-export * from './Numeric';
+export * from './integer/index.js';
+export * from './float/index.js';
+export * from './Numeric.js';

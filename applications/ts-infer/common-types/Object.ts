@@ -1,4 +1,4 @@
-import { Infer, InferExtension } from '../extension';
+import { Infer, InferExtension } from '../extension.js';
 import { Evaluate } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/object/Object.js' {

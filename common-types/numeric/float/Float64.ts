@@ -1,5 +1,5 @@
 import { createType } from '@supschema/core';
-import { Float } from './Float';
+import { Float } from './Float.js';
 
 export interface Float64 extends Float {}
 

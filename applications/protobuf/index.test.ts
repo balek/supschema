@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { generateProtobufFilesOutput } from '.';
+import { generateProtobufFilesOutput } from './index.js';
 import { S } from '@supschema/common-types';
 
 it('References', async () => {

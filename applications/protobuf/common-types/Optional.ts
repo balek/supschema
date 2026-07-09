@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { ProtobufExtension } from '../extension';
+import { ProtobufExtension } from '../extension.js';
 
 declare module '@supschema/common-types/object/Optional.js' {
   interface Optional<S> extends ProtobufExtension<S extends ProtobufExtension ? true : false> {}

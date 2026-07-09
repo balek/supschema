@@ -1,6 +1,6 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
-import { Object, ObjectProperties } from './Object';
-import { Optional } from './Optional';
+import { Object, ObjectProperties } from './Object.js';
+import { Optional } from './Optional.js';
 
 type PartialProperties<P extends ObjectProperties> = { [K in keyof P]: Optional<P[K]> };
 export interface Partial<P extends ObjectProperties> extends Object<PartialProperties<P>> {

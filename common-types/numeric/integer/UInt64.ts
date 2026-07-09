@@ -1,5 +1,5 @@
 import { createType } from '@supschema/core';
-import { Integer } from './Integer';
+import { Integer } from './Integer.js';
 
 export interface UInt64 extends Integer {}
 

@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import { generateOpenApiSpec } from '.';
+import { generateOpenApiSpec } from './index.js';
 import { S } from '@supschema/common-types';
-import HttpEndpoint from './HttpEndpoint';
+import HttpEndpoint from './HttpEndpoint.js';
 
 it('Simple spec', async () => {
   const User = S.Object({ name: S.String() });

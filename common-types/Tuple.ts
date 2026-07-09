@@ -1,5 +1,5 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
-import { DataValue } from './DataValue';
+import { DataValue } from './DataValue.js';
 
 export interface Tuple<T extends DataValue[]> extends DataValue {
   items: T;

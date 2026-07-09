@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { define, ProtobufExtension } from '../extension';
+import { define, ProtobufExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 import { mapToObj } from 'remeda';
 

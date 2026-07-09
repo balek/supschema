@@ -1,6 +1,6 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
-import { String } from './String';
-import { DataValue } from './DataValue';
+import { String } from './String.js';
+import { DataValue } from './DataValue.js';
 
 export interface Record<K extends String, V extends DataValue> extends DataValue {
   keys: K;

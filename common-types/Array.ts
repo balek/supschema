@@ -1,5 +1,5 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
-import { DataValue } from './DataValue';
+import { DataValue } from './DataValue.js';
 
 export interface Array<S extends DataValue> extends DataValue {
   items: S;

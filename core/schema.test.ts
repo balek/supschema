@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { createType, extend, getSchemaType, Schema } from './Schema';
+import { createType, extend, getSchemaType, Schema } from './Schema.js';
 
 const fakeImportMeta = (url: string) => ({ url }) as ImportMeta;
 

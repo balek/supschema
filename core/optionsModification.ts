@@ -1,4 +1,4 @@
-import Schema, { SchemaOptions } from './Schema';
+import Schema, { SchemaOptions } from './Schema.js';
 
 export interface OptionsModification<S extends Schema> {
   originalSchema: S;

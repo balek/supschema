@@ -1,5 +1,5 @@
 import { createType } from '@supschema/core';
-import SafeInt from './SafeInt';
+import SafeInt from './SafeInt.js';
 
 export interface Int32 extends SafeInt {}
 

@@ -1,6 +1,5 @@
 import { computed } from '@vue/reactivity';
 import { Schema } from '@supschema/core';
-import './common-types';
 import { capitalize, mapValues } from 'remeda';
 import { getRegistry } from '@supschema/codegen-utils/astGeneration/registry.js';
 import { Root, INamespace, IField, AnyNestedObject } from 'protobufjs';

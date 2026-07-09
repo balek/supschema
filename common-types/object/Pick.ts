@@ -1,6 +1,6 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
 import { Evaluate } from '@supschema/core/utils.js';
-import { Object, ObjectProperties } from './Object';
+import { Object, ObjectProperties } from './Object.js';
 
 export interface Pick<P extends ObjectProperties> extends Object<P> {
   object: Object<any>;

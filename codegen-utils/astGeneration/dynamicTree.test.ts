@@ -1,7 +1,7 @@
 import { ref } from '@vue/reactivity';
 import { expect, it } from 'vitest';
-import { currentNode, generateNode, generateRoot, withRegistry } from './dynamicTree';
-import { getRegistry, Registry } from './registry';
+import { currentNode, generateNode, generateRoot, withRegistry } from './dynamicTree.js';
+import { getRegistry, Registry } from './registry.js';
 
 class TestRegistry extends Registry {
   values: string[] = [];

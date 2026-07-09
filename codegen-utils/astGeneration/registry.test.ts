@@ -1,11 +1,6 @@
 import { expect, it } from 'vitest';
-import {
-  createTrackingRegistry,
-  computedWithRegistries,
-  getRegistry,
-  withRegistries,
-} from './registry';
-import { Registry } from './registry';
+import { createTrackingRegistry, computedWithRegistries, getRegistry, withRegistries } from './registry.js';
+import { Registry } from './registry.js';
 import { ref } from '@vue/reactivity';
 
 class TestRegistry extends Registry {

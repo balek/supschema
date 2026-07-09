@@ -1,5 +1,5 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
-import { DataValue } from './DataValue';
+import { DataValue } from './DataValue.js';
 
 export interface Union<T extends DataValue[]> extends DataValue {
   anyOf: T;

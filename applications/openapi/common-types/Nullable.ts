@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genOpenApiSchema, isOpenApiSchema, OpenApiExtension } from '../extension';
+import { genOpenApiSchema, isOpenApiSchema, OpenApiExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/Nullable.js' {

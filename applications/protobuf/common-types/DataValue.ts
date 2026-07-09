@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { ProtobufExtension } from '../extension';
+import { ProtobufExtension } from '../extension.js';
 import { findDescriptorInPrototypeChain } from '@supschema/core/utils.js';
 
 extend(

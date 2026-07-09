@@ -1,5 +1,5 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
-import { Object, ObjectProperties } from './object/Object';
+import { Object, ObjectProperties } from './object/Object.js';
 
 export interface Model<Name extends string, P extends ObjectProperties> extends Object<P> {
   name: Name;

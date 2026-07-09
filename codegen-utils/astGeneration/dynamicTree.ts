@@ -5,7 +5,7 @@ import {
   currentRegistries,
   Registry,
   withRegistries,
-} from './registry';
+} from './registry.js';
 
 interface Context {
   /** Path describing the current scope within the generated tree. */

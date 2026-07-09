@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { JsonSchemaExtension } from '../extension';
+import { JsonSchemaExtension } from '../extension.js';
 import { getSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/numeric/integer/SafeInt.js' {

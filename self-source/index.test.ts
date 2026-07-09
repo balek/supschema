@@ -1,5 +1,5 @@
 import { it, expect } from 'vitest';
-import { generateSelfSourceFilesOutput } from './index';
+import { generateSelfSourceFilesOutput } from './index.js';
 import { modifyOpts, Schema, SchemaPathGetter } from '@supschema/core';
 
 const basePath = new URL('..', import.meta.url).href;

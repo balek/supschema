@@ -1,5 +1,5 @@
 import DataValue from '@supschema/common-types/DataValue.js';
-import { Infer, InferExtension } from '../extension';
+import { Infer, InferExtension } from '../extension.js';
 
 declare module '@supschema/common-types/Union.js' {
   interface Union<T> extends InferExtension<

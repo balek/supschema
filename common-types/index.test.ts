@@ -1,5 +1,5 @@
 import { it, expect, describe } from 'vitest';
-import { S } from '.';
+import { S } from './index.js';
 
 describe('All types', () => {
   it('inherit DataValue', () => {

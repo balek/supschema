@@ -1,6 +1,6 @@
 import { Schema } from '@supschema/core';
 import type { OpenAPIV3_1 } from '@hey-api/spec-types';
-import { JsonSchemaExtension } from '@supschema/json-schema';
+import { JsonSchemaExtension } from '@supschema/json-schema/extension.js';
 import {
   currentNode,
   generateNode,
@@ -9,9 +9,9 @@ import {
 } from '@supschema/codegen-utils/astGeneration/dynamicTree.js';
 import { AstFieldGenerator, GlobalDefinitionRegistry } from '@supschema/codegen-utils/astGeneration/common.js';
 import { groupBy, mapToObj, mapValues, omitBy } from 'remeda';
-import HttpEndpoint from './HttpEndpoint';
+import HttpEndpoint from './HttpEndpoint.js';
 import { getRegistry } from '@supschema/codegen-utils/astGeneration/registry.js';
-import { extractHttpParam } from './HttpParam';
+import { extractHttpParam } from './HttpParam.js';
 
 export interface OpenApiExtension<T extends boolean = true> {
   $openApi: T extends true ? AstFieldGenerator<OpenAPIV3_1.SchemaObject> : undefined;

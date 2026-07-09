@@ -1,5 +1,5 @@
 import DataValue from '@supschema/common-types/DataValue.js';
-import { Infer, InferExtension } from '../extension';
+import { Infer, InferExtension } from '../extension.js';
 
 type InferTuple<T extends DataValue[], Acc extends unknown[] = []> = T extends [
   infer L extends DataValue,

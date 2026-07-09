@@ -1,1 +1,1 @@
-export * as S from './all';
+export * as S from './all.js';

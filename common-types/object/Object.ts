@@ -1,6 +1,6 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
-import { DataValue } from '../DataValue';
-import { Optional } from './Optional';
+import { DataValue } from '../DataValue.js';
+import { Optional } from './Optional.js';
 
 export type ObjectProperties = Record<string, DataValue>;
 
@@ -30,7 +30,7 @@ export type AllPropertiesExtend<P extends ObjectProperties, C> = {
   ? true
   : false;
 
-declare module '../DataValue' {
+declare module '../DataValue.js' {
   export interface DataValue {
     optional?: boolean;
   }

@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { callSuper, findDescriptorInPrototypeChain, getSuper } from './utils';
+import { callSuper, findDescriptorInPrototypeChain, getSuper } from './utils.js';
 
 it('finds both own and inherited descriptors in the prototype chain', () => {
   class Base {
