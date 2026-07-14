@@ -1,10 +1,10 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genJsonSchema, JsonSchemaExtension } from '../extension.js';
+import { genJsonSchema, JsonSchemaExtended, JsonSchemaExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/Union.js' {
-  interface Union<T> extends JsonSchemaExtension<T extends JsonSchemaExtension[] ? true : false> {}
+  interface Union<T> extends JsonSchemaExtension<T extends JsonSchemaExtended[] ? true : false> {}
 }
 
 extend(S.Union, {

@@ -1,11 +1,11 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genOpenApiSchema, isOpenApiSchema, OpenApiExtension } from '../extension.js';
+import { genOpenApiSchema, isOpenApiSchema, OpenApiExtended, OpenApiExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 import { mapValues } from 'remeda';
 
 declare module '@supschema/common-types/object/Object.js' {
-  interface Object<P> extends OpenApiExtension<AllPropertiesExtend<P, OpenApiExtension>> {}
+  interface Object<P> extends OpenApiExtension<AllPropertiesExtend<P, OpenApiExtended>> {}
 }
 
 extend(S.Object, {

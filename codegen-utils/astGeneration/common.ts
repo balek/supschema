@@ -4,12 +4,12 @@ import { currentNode, GenerationNode } from './dynamicTree.js';
 import { extractOptionsModification, Schema } from '@supschema/core';
 import { isDeepEqual } from 'remeda';
 
-export interface SchemaDefinitionRef {
-  schema: Schema;
+export interface SchemaDefinitionRef<S extends Schema = Schema> {
+  schema: S;
   ref: string;
 }
 
-export type AstFieldGenerator<T> = (baseRef?: SchemaDefinitionRef) => T;
+export type AstFieldGenerator<T, S extends Schema = any> = (baseRef?: SchemaDefinitionRef<S>) => T;
 
 export class ImportRegistry extends Registry {
   imports = shallowReactive(new Set<string>());
@@ -76,11 +76,11 @@ export class GlobalDefinitionRegistry extends Registry {
     return isDeepEqual(this.schemas, another.schemas);
   }
 
-  getBaseRef(schema: Schema) {
+  getBaseRef<S extends Schema>(schema: S) {
     const { schemas } = this;
     const { scopePath, nameSuffix } = currentNode.context;
     const baseSchema = computed(() => {
-      let s: Schema | undefined = schema;
+      let s: S | undefined = schema;
       while (s) {
         const ref = schemas.get(s);
         if (ref && !isDeepEqual(ref, [...scopePath, nameSuffix])) return s;

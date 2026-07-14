@@ -1,11 +1,11 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genJsonSchema, JsonSchemaExtension } from '../extension.js';
+import { genJsonSchema, JsonSchemaExtended, JsonSchemaExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 import { mapValues } from 'remeda';
 
 declare module '@supschema/common-types/object/Object.js' {
-  interface Object<P> extends JsonSchemaExtension<AllPropertiesExtend<P, JsonSchemaExtension>> {}
+  interface Object<P> extends JsonSchemaExtension<AllPropertiesExtend<P, JsonSchemaExtended>> {}
 }
 
 extend(S.Object, {

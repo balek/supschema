@@ -1,11 +1,11 @@
 import { createType, defineConstructor, Schema, SchemaOptions } from '@supschema/core';
-import { OpenApiOrJsonSchemaExtension } from './extension.js';
+import { OpenApiExtended } from './extension.js';
 
 export type HttpMethod = 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch' | 'trace';
 
 export interface HttpEndpoint<
-  Params extends Record<string, OpenApiOrJsonSchemaExtension> = Record<string, OpenApiOrJsonSchemaExtension>,
-  Responses extends Record<number, OpenApiOrJsonSchemaExtension> = Record<number, OpenApiOrJsonSchemaExtension>,
+  Params extends Record<string, OpenApiExtended> = Record<string, OpenApiExtended>,
+  Responses extends Record<number, OpenApiExtended> = Record<number, OpenApiExtended>,
 > extends Schema {
   path: string;
   method: HttpMethod;
@@ -17,10 +17,7 @@ export const HttpEndpoint = createType(
   import.meta,
   Schema,
   defineConstructor(
-    <
-      Params extends Record<string, OpenApiOrJsonSchemaExtension>,
-      Responses extends Record<number, OpenApiOrJsonSchemaExtension>,
-    >(
+    <Params extends Record<string, OpenApiExtended>, Responses extends Record<number, OpenApiExtended>>(
       path: string,
       method: HttpMethod,
       parameters: Params,

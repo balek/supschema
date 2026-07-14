@@ -1,10 +1,10 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { catchDefinitions, define, genProtobufField, ProtobufExtension } from '../extension.js';
+import { catchDefinitions, define, genProtobufField, ProtobufExtended, ProtobufExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/Array.js' {
-  interface Array<S> extends ProtobufExtension<S extends ProtobufExtension ? true : false> {}
+  interface Array<S> extends ProtobufExtension<S extends ProtobufExtended ? true : false> {}
 }
 
 extend(S.Array, {

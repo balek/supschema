@@ -1,10 +1,10 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genJsonSchema, JsonSchemaExtension } from '../extension.js';
+import { genJsonSchema, JsonSchemaExtended, JsonSchemaExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/Nullable.js' {
-  interface Nullable<S> extends JsonSchemaExtension<S extends JsonSchemaExtension ? true : false> {}
+  interface Nullable<S> extends JsonSchemaExtension<S extends JsonSchemaExtended ? true : false> {}
 }
 
 extend(S.Nullable, {

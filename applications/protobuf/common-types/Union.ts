@@ -1,15 +1,16 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { catchDefinitions, define, genProtobufField, ProtobufExtension } from '../extension.js';
+import { catchDefinitions, define, genProtobufField, ProtobufExtended, ProtobufExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 import { mapToObj } from 'remeda';
 
 declare module '@supschema/common-types/Union.js' {
-  interface Union<T> extends ProtobufExtension<T extends ProtobufExtension[] ? true : false> {}
+  interface Union<T> extends ProtobufExtension<T extends ProtobufExtended[] ? true : false> {}
 }
 
+type ExtendedUnion = S.Union<(S.DataValue & ProtobufExtension)[]>;
 extend(S.Union, {
-  get $protobuf(): ProtobufExtension<boolean>['$protobuf'] {
+  get $protobuf(): ExtendedUnion['$protobuf'] | undefined {
     if (this.anyOf.some((p) => !p.$protobuf)) return;
 
     return (baseRef) => {
@@ -34,4 +35,4 @@ extend(S.Union, {
       return { ...callSuper(this, '$protobuf', S.Union, baseRef), type: ref };
     };
   },
-} as ThisType<S.Union<(S.DataValue & ProtobufExtension)[]>>);
+} as ThisType<ExtendedUnion>);

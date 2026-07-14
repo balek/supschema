@@ -1,9 +1,9 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { JsonSchemaExtension } from '../extension.js';
+import { JsonSchemaExtended, JsonSchemaExtension } from '../extension.js';
 
 declare module '@supschema/common-types/object/Optional.js' {
-  interface Optional<S> extends JsonSchemaExtension<S extends JsonSchemaExtension ? true : false> {}
+  interface Optional<S> extends JsonSchemaExtension<S extends JsonSchemaExtended ? true : false> {}
 }
 
 extend(S.Optional, {

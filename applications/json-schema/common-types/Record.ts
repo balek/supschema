@@ -1,10 +1,10 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genJsonSchema, JsonSchemaExtension } from '../extension.js';
+import { genJsonSchema, JsonSchemaExtended, JsonSchemaExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/Record.js' {
-  interface Record<K, V> extends JsonSchemaExtension<V extends JsonSchemaExtension ? true : false> {}
+  interface Record<K, V> extends JsonSchemaExtension<V extends JsonSchemaExtended ? true : false> {}
 }
 
 extend(S.Record, {

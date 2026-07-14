@@ -11,10 +11,11 @@ import { Schema } from '@supschema/core';
 import { mapValues, omitBy } from 'remeda';
 
 export interface JsonSchemaExtension<T extends boolean = true> {
-  $jsonSchema: T extends true ? AstFieldGenerator<JSONSchemaDraft2020_12.Document> : undefined;
+  $jsonSchema: T extends true ? AstFieldGenerator<JSONSchemaDraft2020_12.Document, this> : undefined;
 }
+export type JsonSchemaExtended = { $jsonSchema: AstFieldGenerator<JSONSchemaDraft2020_12.Document> };
 
-export const genJsonSchema = (key: string, schema: Schema & JsonSchemaExtension): JSONSchemaDraft2020_12.Document =>
+export const genJsonSchema = (key: string, schema: Schema & JsonSchemaExtended): JSONSchemaDraft2020_12.Document =>
   generateNode(key, { nameSuffix: key }, () => {
     const base = getRegistry(GlobalDefinitionRegistry).getBaseRef(schema);
     const baseRef = base && {
@@ -32,8 +33,8 @@ export const genJsonSchema = (key: string, schema: Schema & JsonSchemaExtension)
   });
 
 export type JsonSchemaRoot = {
-  $defs?: Record<string, Schema & JsonSchemaExtension>;
-  schema: Schema & JsonSchemaExtension;
+  $defs?: Record<string, Schema & JsonSchemaExtended>;
+  schema: Schema & JsonSchemaExtended;
 };
 
 export const generateJsonSchemaRoot = (root: JsonSchemaRoot): JSONSchemaDraft2020_12.Document => ({

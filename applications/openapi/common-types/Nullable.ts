@@ -1,10 +1,10 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genOpenApiSchema, isOpenApiSchema, OpenApiExtension } from '../extension.js';
+import { genOpenApiSchema, isOpenApiSchema, OpenApiExtended, OpenApiExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/Nullable.js' {
-  interface Nullable<S> extends OpenApiExtension<S extends OpenApiExtension ? true : false> {}
+  interface Nullable<S> extends OpenApiExtension<S extends OpenApiExtended ? true : false> {}
 }
 
 extend(S.Nullable, {

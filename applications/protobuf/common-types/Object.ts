@@ -1,15 +1,16 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { catchDefinitions, define, genProtobufField, ProtobufExtension } from '../extension.js';
+import { catchDefinitions, define, genProtobufField, ProtobufExtended, ProtobufExtension } from '../extension.js';
 import { callSuper } from '@supschema/core/utils.js';
 import { mapToObj, mapValues } from 'remeda';
 
 declare module '@supschema/common-types/object/Object.js' {
-  interface Object<P> extends ProtobufExtension<AllPropertiesExtend<P, ProtobufExtension>> {}
+  interface Object<P> extends ProtobufExtension<AllPropertiesExtend<P, ProtobufExtended>> {}
 }
 
+type ExtendedObject = S.Object<{ [K: string]: S.DataValue & ProtobufExtension }>;
 extend(S.Object, {
-  get $protobuf(): ProtobufExtension<boolean>['$protobuf'] {
+  get $protobuf(): ExtendedObject['$protobuf'] | undefined {
     if (Object.values(this.properties).some((p) => !p.$protobuf)) return;
 
     return (baseRef) => {
@@ -29,4 +30,4 @@ extend(S.Object, {
       return { ...callSuper(this, '$protobuf', S.Object, baseRef), type: ref };
     };
   },
-} as ThisType<S.Object<{ [K: string]: S.DataValue & ProtobufExtension }>>);
+} as ThisType<ExtendedObject>);

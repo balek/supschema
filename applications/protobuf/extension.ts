@@ -11,14 +11,17 @@ import {
   withRegistry,
 } from '@supschema/codegen-utils/astGeneration/dynamicTree.js';
 import {
+  AstFieldGenerator,
   GlobalDefinitionRegistry,
   ImportRegistry,
   LocalDefinitionRegistry,
-  SchemaDefinitionRef,
 } from '@supschema/codegen-utils/astGeneration/common.js';
 
 export interface ProtobufExtension<T extends boolean = true> {
-  $protobuf: T extends true ? (baseRef?: SchemaDefinitionRef) => Omit<IField, 'id'> : undefined;
+  $protobuf: T extends true ? AstFieldGenerator<Omit<IField, 'id'>, this> : undefined;
+}
+export interface ProtobufExtended {
+  $protobuf: AstFieldGenerator<Omit<IField, 'id'>>;
 }
 
 export interface IRootNamespace extends INamespace {
@@ -27,7 +30,7 @@ export interface IRootNamespace extends INamespace {
 
 export const registerImport = (path: string) => getRegistry(ImportRegistry).register(path);
 
-export const genProtobufField = (key: string, schema: Schema & ProtobufExtension): Omit<IField, 'id'> =>
+export const genProtobufField = (key: string, schema: Schema & ProtobufExtended): Omit<IField, 'id'> =>
   generateNode(key, { nameSuffix: currentNode.context.nameSuffix + capitalize(key) }, () => {
     const base = getRegistry(GlobalDefinitionRegistry).getBaseRef(schema);
     const baseRef = base && {
@@ -71,7 +74,7 @@ export const define = (namePostfix: string, fn: (name: string) => AnyNestedObjec
   return name;
 };
 
-export const generateProtobufJson = (schemas: Record<string, ProtobufExtension>): IRootNamespace => {
+export const generateProtobufJson = (schemas: Record<string, ProtobufExtended>): IRootNamespace => {
   const {
     registry: { imports },
     result: nested,
@@ -92,7 +95,7 @@ export const generateProtobufJson = (schemas: Record<string, ProtobufExtension>)
   };
 };
 
-export const generateProtobufJsons = (files: Record<string, Record<string, ProtobufExtension>>) =>
+export const generateProtobufJsons = (files: Record<string, Record<string, ProtobufExtended>>) =>
   generateRoot(
     () =>
       withRegistry(GlobalDefinitionRegistry, () =>
@@ -119,5 +122,5 @@ export const generateProtobufByJson = (json: IRootNamespace) => {
   return output;
 };
 
-export const generateProtobufFilesOutput = (files: Record<string, Record<string, ProtobufExtension>>) =>
+export const generateProtobufFilesOutput = (files: Record<string, Record<string, ProtobufExtended>>) =>
   mapValues(generateProtobufJsons(files), generateProtobufByJson);

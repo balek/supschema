@@ -1,11 +1,11 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genProtobufField, ProtobufExtension } from '../extension.js';
+import { genProtobufField, ProtobufExtended, ProtobufExtension } from '../extension.js';
 
 declare module '@supschema/common-types/Record.js' {
   interface Record<K, V> extends ProtobufExtension<
     // oxlint-disable-next-line typescript/no-wrapper-object-types
-    K extends S.String ? (V extends ProtobufExtension ? true : false) : false
+    K extends S.String ? (V extends ProtobufExtended ? true : false) : false
   > {}
 }
 

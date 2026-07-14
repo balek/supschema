@@ -1,9 +1,9 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { ProtobufExtension } from '../extension.js';
+import { ProtobufExtended, ProtobufExtension } from '../extension.js';
 
 declare module '@supschema/common-types/Nullable.js' {
-  interface Nullable<S> extends ProtobufExtension<S extends ProtobufExtension ? true : false> {}
+  interface Nullable<S> extends ProtobufExtension<S extends ProtobufExtended ? true : false> {}
 }
 
 extend(S.Nullable, {

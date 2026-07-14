@@ -1,6 +1,6 @@
 import { Schema } from '@supschema/core';
 import type { OpenAPIV3_1 } from '@hey-api/spec-types';
-import { JsonSchemaExtension } from '@supschema/json-schema/extension.js';
+import { JsonSchemaExtended } from '@supschema/json-schema/extension.js';
 import {
   currentNode,
   generateNode,
@@ -14,15 +14,14 @@ import { getRegistry } from '@supschema/codegen-utils/astGeneration/registry.js'
 import { extractHttpParam } from './HttpParam.js';
 
 export interface OpenApiExtension<T extends boolean = true> {
-  $openApi: T extends true ? AstFieldGenerator<OpenAPIV3_1.SchemaObject> : undefined;
+  $openApi: T extends true ? AstFieldGenerator<OpenAPIV3_1.SchemaObject, this> : undefined;
 }
+export type OpenApiExtended = { $openApi: AstFieldGenerator<OpenAPIV3_1.SchemaObject> } | JsonSchemaExtended;
 
-export type OpenApiOrJsonSchemaExtension = OpenApiExtension | JsonSchemaExtension;
+export const isOpenApiSchema = (schema: Schema): schema is OpenApiExtended =>
+  !!(schema as OpenApiExtension<boolean>).$openApi || !!(schema as JsonSchemaExtended).$jsonSchema;
 
-export const isOpenApiSchema = (schema: Schema): schema is OpenApiOrJsonSchemaExtension =>
-  !!(schema as OpenApiExtension<boolean>).$openApi || !!(schema as JsonSchemaExtension<boolean>).$jsonSchema;
-
-export const genOpenApiSchema = (key: string, schema: OpenApiOrJsonSchemaExtension): OpenAPIV3_1.SchemaObject =>
+export const genOpenApiSchema = (key: string, schema: OpenApiExtended): OpenAPIV3_1.SchemaObject =>
   generateNode(key, { nameSuffix: key }, () => {
     const base = getRegistry(GlobalDefinitionRegistry).getBaseRef(schema);
     const baseRef = base && {
@@ -34,15 +33,10 @@ export const genOpenApiSchema = (key: string, schema: OpenApiOrJsonSchemaExtensi
 
     if (baseRef?.schema === schema) return { $ref: baseRef.ref };
 
-    const method = (schema as OpenApiExtension<boolean>).$openApi ?? (schema as JsonSchemaExtension).$jsonSchema;
+    const method = ('$openApi' in schema && schema.$openApi) || (schema as JsonSchemaExtended).$jsonSchema;
 
     return omitBy(method(baseRef), (v) => v === undefined) as never;
   });
-
-export type JsonSchemaRoot = {
-  $defs?: Record<string, Schema & JsonSchemaExtension>;
-  schema: Schema & JsonSchemaExtension;
-};
 
 export const generateOperationObject = (endpoint: HttpEndpoint): OpenAPIV3_1.OperationObject => ({
   parameters: Object.entries(endpoint.parameters).map(([key, schema]) => ({
@@ -55,7 +49,7 @@ export const generateOperationObject = (endpoint: HttpEndpoint): OpenAPIV3_1.Ope
 
 export interface OpenApiDescription extends Omit<OpenAPIV3_1.Document, 'components'> {
   endpoints: HttpEndpoint[];
-  schemas: Record<string, Schema & OpenApiOrJsonSchemaExtension>;
+  schemas: Record<string, Schema & OpenApiExtended>;
 }
 
 export const generateOpenApiSpec = ({ endpoints, schemas, ...rest }: OpenApiDescription): OpenAPIV3_1.Document =>
