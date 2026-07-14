@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   ssr: {
     resolve: {
-      conditions: ['subschema-dev', 'import', 'default'],
+      conditions: ['supschema-dev', 'import', 'default'],
     },
   },
   test: {
