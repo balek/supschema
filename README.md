@@ -7,24 +7,38 @@ Single metadata DSL for describing data across its full lifecycle: storage, tran
 Install common schema types and schema applications you want to use.
 
 ```bash
-npm install @supschema/common-types @supschema/openapi @supschema/postgresql @supschema/validation
+npm install @supschema/common-types @supschema/openapi @supschema/prisma @supschema/validation
 ```
 
 Describe your data and generate specifications/code/documentation or use the description directly in JS runtime for validation/encoding/display/etc.
 
 ```typescript
 import { S } from '@supschema/common-types';
-import { HttpEndpoint, generateOpenApiSpec } from '@supschema/openapi';
-import { AutoIncrement, Model, generateCreateTables } from '@supschema/postgresql';
+import { Model, AutoIncrement } from '@supschema/model-types';
+import { HttpEndpoint, writeOpenApiSpec } from '@supschema/openapi';
+import { writePrismaSchemas } from '@supschema/prisma';
 import { validate } from '@supschema/validation';
 
-const User = Model({ key: ['id'] }, { id: S.AutoIncrement(), name: S.String({ minLength: 1 }) });
+const User = Model({ name: 'User', key: ['id'] }, { id: AutoIncrement(S.Int32()), name: S.String({ minLength: 1 }) });
 const UserCreateData = S.Omit(User, ['id']);
 
 const UserCreateEndpoint = HttpEndpoint('/users', 'post', { body: UserCreateData }, S.Object({ id: S.Integer() }));
 
-await generateCreateTables('tables.sql', { User });
-await generateOpenApiSpec('openapi.yml', [UserCreateEndpoint]);
+// Generate ORM schema files
+await writePrismaSchemas(
+  'prisma',
+  { datasource: { provider: 'postgresql' }, generators: {} },
+  { 'schema.prisma': { User } },
+);
+
+// Generate OpenAPI spec file
+await writeOpenApiSpec('openapi.yml', {
+  openapi: '3.1.2',
+  info: { title: 'Test', version: '1.0.0' },
+  endpoints: [UserCreateEndpoint],
+});
+
+// Make runtime validations
 validate(UserCreateData, { name: ''});
 ```
 

@@ -50,7 +50,7 @@ export const generateOperationObject = (endpoint: HttpEndpoint): OpenAPIV3_1.Ope
 
 export interface OpenApiDescription extends Omit<OpenAPIV3_1.Document, 'components'> {
   endpoints: HttpEndpoint[];
-  schemas: Record<string, Schema & OpenApiExtended>;
+  schemas?: Record<string, Schema & OpenApiExtended>;
 }
 
 export const generateOpenApiSpec = ({ endpoints, schemas, ...rest }: OpenApiDescription): OpenAPIV3_1.Document =>
@@ -59,12 +59,14 @@ export const generateOpenApiSpec = ({ endpoints, schemas, ...rest }: OpenApiDesc
       withRegistry(GlobalDefinitionRegistry, () => ({
         ...rest,
         components: {
-          schemas: mapValues(schemas, (schema, name) =>
-            generateNode(name, { scopePath: ['spec', 'components', 'schemas'] }, () => {
-              getRegistry(GlobalDefinitionRegistry).register(schema, [...currentNode.context.scopePath, name]);
-              return genOpenApiSchema(name, schema);
-            }),
-          ),
+          schemas:
+            schemas &&
+            mapValues(schemas, (schema, name) =>
+              generateNode(name, { scopePath: ['spec', 'components', 'schemas'] }, () => {
+                getRegistry(GlobalDefinitionRegistry).register(schema, [...currentNode.context.scopePath, name]);
+                return genOpenApiSchema(name, schema);
+              }),
+            ),
         },
         paths: mapValues(
           groupBy(endpoints, (e) => e.path),
