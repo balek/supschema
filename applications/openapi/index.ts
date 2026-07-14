@@ -1,2 +1,2 @@
-export * from './extension.js';
+export * from './base.js';
 export * from './common-types/index.js';

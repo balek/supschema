@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { ProtobufExtended, ProtobufExtension } from '../extension.js';
+import { ProtobufExtended, ProtobufExtension } from '../base.js';
 import { mapToObj } from 'remeda';
 
 declare module '@supschema/common-types/Tuple.js' {

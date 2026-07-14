@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { OpenApiExtension } from '../extension.js';
+import { OpenApiExtension } from '../base.js';
 import { findDescriptorInPrototypeChain } from '@supschema/core/utils.js';
 
 extend(

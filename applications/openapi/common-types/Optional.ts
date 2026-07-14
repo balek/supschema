@@ -1,7 +1,7 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { OpenApiExtended, OpenApiExtension } from '../extension.js';
-import { JsonSchemaExtension } from '@supschema/json-schema/extension.js';
+import { OpenApiExtended, OpenApiExtension } from '../base.js';
+import { JsonSchemaExtension } from '@supschema/json-schema/base.js';
 
 declare module '@supschema/common-types/object/Optional.js' {
   interface Optional<S> extends OpenApiExtension<S extends OpenApiExtended ? true : false> {}

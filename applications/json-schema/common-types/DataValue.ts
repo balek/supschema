@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { JsonSchemaExtension } from '../extension.js';
+import { JsonSchemaExtension } from '../base.js';
 import { findDescriptorInPrototypeChain } from '@supschema/core/utils.js';
 
 extend(

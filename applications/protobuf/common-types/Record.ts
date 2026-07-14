@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genProtobufField, ProtobufExtended, ProtobufExtension } from '../extension.js';
+import { genProtobufField, ProtobufExtended, ProtobufExtension } from '../base.js';
 
 declare module '@supschema/common-types/Record.js' {
   interface Record<K, V> extends ProtobufExtension<

@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genPrismaField, PrismaExtension, PrismaExtended } from '../application.js';
+import { genPrismaField, PrismaExtension, PrismaExtended } from '../base.js';
 
 declare module '@supschema/common-types/Nullable.js' {
   interface Nullable<S> extends PrismaExtension<S extends PrismaExtended ? true : false> {}

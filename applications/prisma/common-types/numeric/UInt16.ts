@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { dbConnector, extendWithDbAttribute, PrismaExtension } from '../../application.js';
+import { dbConnector, extendWithDbAttribute, PrismaExtension } from '../../base.js';
 import { callSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/numeric/integer/UInt16.js' {

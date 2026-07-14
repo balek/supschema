@@ -1,6 +1,6 @@
 import { Schema } from '@supschema/core';
 import type { OpenAPIV3_1 } from '@hey-api/spec-types';
-import { JsonSchemaExtended } from '@supschema/json-schema/extension.js';
+import { JsonSchemaExtended } from '@supschema/json-schema/base.js';
 import {
   currentNode,
   generateNode,

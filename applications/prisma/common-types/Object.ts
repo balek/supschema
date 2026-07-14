@@ -7,7 +7,7 @@ import {
   genPrismaProperties,
   PrismaExtendedProperties,
   generateObjectDescription,
-} from '../application.js';
+} from '../base.js';
 import { callSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/object/Object.js' {

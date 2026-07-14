@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genPrismaField, PrismaExtension, PrismaExtended } from '../application.js';
+import { genPrismaField, PrismaExtension, PrismaExtended } from '../base.js';
 import { callSuper } from '@supschema/core/utils.js';
 import { Nullable } from '@supschema/common-types/Nullable.js';
 

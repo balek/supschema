@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { catchDefinitions, define, genProtobufField, ProtobufExtended, ProtobufExtension } from '../extension.js';
+import { catchDefinitions, define, genProtobufField, ProtobufExtended, ProtobufExtension } from '../base.js';
 import { callSuper } from '@supschema/core/utils.js';
 import { mapToObj, mapValues } from 'remeda';
 

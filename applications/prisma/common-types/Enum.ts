@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { define, generateObjectDescription, PrismaExtension } from '../application.js';
+import { define, generateObjectDescription, PrismaExtension } from '../base.js';
 import { callSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/Enum.js' {

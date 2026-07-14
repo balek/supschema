@@ -1,2 +1,2 @@
 export * from './common-types/index.js';
-export * from './application.js';
+export * from './base.js';

@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { PrismaExtension } from '../application.js';
+import { PrismaExtension } from '../base.js';
 import { findDescriptorInPrototypeChain } from '@supschema/core/utils.js';
 
 type ExtendedDataValue = S.DataValue & PrismaExtension<boolean>;

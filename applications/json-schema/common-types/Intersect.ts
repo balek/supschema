@@ -1,6 +1,6 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { genJsonSchema, JsonSchemaExtension } from '../extension.js';
+import { genJsonSchema, JsonSchemaExtension } from '../base.js';
 import { callSuper } from '@supschema/core/utils.js';
 
 declare module '@supschema/common-types/Intersect.js' {

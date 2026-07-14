@@ -1,5 +1,5 @@
 import { createType, defineConstructor, Schema, SchemaOptions } from '@supschema/core';
-import { OpenApiExtended } from './extension.js';
+import { OpenApiExtended } from './base.js';
 
 export type HttpMethod = 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch' | 'trace';
 
