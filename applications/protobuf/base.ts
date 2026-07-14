@@ -16,6 +16,7 @@ import {
   ImportRegistry,
   LocalDefinitionRegistry,
 } from '@supschema/codegen-utils/astGeneration/common.js';
+import { writeFiles } from '@supschema/codegen-utils/fs.js';
 
 export interface ProtobufExtension<T extends boolean = true> {
   $protobuf: T extends true ? AstFieldGenerator<Omit<IField, 'id'>, this> : undefined;
@@ -124,3 +125,6 @@ export const generateProtobufByJson = (json: IRootNamespace) => {
 
 export const generateProtobufFilesOutput = (files: Record<string, Record<string, ProtobufExtended>>) =>
   mapValues(generateProtobufJsons(files), generateProtobufByJson);
+
+export const writeProtobufFiles = (files: Record<string, Record<string, ProtobufExtended>>) =>
+  writeFiles(generateProtobufFilesOutput(files));

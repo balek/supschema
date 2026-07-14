@@ -7,6 +7,7 @@ import {
   withRegistry,
 } from '@supschema/codegen-utils/astGeneration/dynamicTree.js';
 import { getRegistry } from '@supschema/codegen-utils/astGeneration/registry.js';
+import { writeFiles } from '@supschema/codegen-utils/fs.js';
 import { Schema } from '@supschema/core';
 import { mapValues, omitBy } from 'remeda';
 
@@ -56,3 +57,6 @@ export const generateJsonSchemas = (files: Record<string, JsonSchemaRoot>) =>
         mapValues(files, (root, path) => generateNode(path, { scopePath: [path] }, () => generateJsonSchemaRoot(root))),
       ).result,
   );
+
+export const writeJsonSchemas = (files: Record<string, JsonSchemaRoot>) =>
+  writeFiles(mapValues(generateJsonSchemas(files), (s) => JSON.stringify(s, null, 2)));

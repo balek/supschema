@@ -12,6 +12,7 @@ import { groupBy, mapToObj, mapValues, omitBy } from 'remeda';
 import HttpEndpoint from './HttpEndpoint.js';
 import { getRegistry } from '@supschema/codegen-utils/astGeneration/registry.js';
 import { extractHttpParam } from './HttpParam.js';
+import { writeFiles } from '@supschema/codegen-utils/fs.js';
 
 export interface OpenApiExtension<T extends boolean = true> {
   $openApi: T extends true ? AstFieldGenerator<OpenAPIV3_1.SchemaObject, this> : undefined;
@@ -79,3 +80,6 @@ export const generateOpenApiSpec = ({ endpoints, schemas, ...rest }: OpenApiDesc
         ),
       })).result,
   );
+
+export const writeOpenApiSpec = (path: string, description: OpenApiDescription) =>
+  writeFiles({ [path]: JSON.stringify(generateOpenApiSpec(description), null, 2) });

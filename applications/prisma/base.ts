@@ -25,11 +25,12 @@ import {
   AttributeArgument,
   Break,
 } from '@mrleebo/prisma-ast';
-import { capitalize, groupBy, mapValues, pickBy } from 'remeda';
+import { capitalize, groupBy, mapKeys, mapValues, pickBy } from 'remeda';
 import { computed } from '@vue/reactivity';
 import { Model, ModelRelation } from '@supschema/model-types';
 import type { S } from '@supschema/common-types';
 import Nullable from '@supschema/common-types/Nullable.js';
+import { writeFiles } from '@supschema/codegen-utils/fs.js';
 
 export type PrismaField = Omit<Field, 'name' | 'type'> & { description?: string };
 export type PrismaType = Omit<PrismaModel | Enum | Type, 'name'> & { description?: string };
@@ -335,3 +336,9 @@ export const generatePrismaSchemas = (
     }),
   );
 };
+
+export const writePrismaSchemas = (
+  baseDir: string,
+  opts: { datasource: DataSource; generators: Record<string, Generator> },
+  files: Record<string, Record<string, RootSchemas>>,
+) => writeFiles(mapKeys(generatePrismaSchemas(opts, files), (k) => baseDir + '/' + k));
