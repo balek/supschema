@@ -5,7 +5,7 @@ import { callSuper } from '@supschema/core/utils.js';
 import { mapToObj, mapValues } from 'remeda';
 
 declare module '@supschema/common-types/object/Object.js' {
-  interface Object<P> extends ProtobufExtension<AllPropertiesExtend<P, ProtobufExtension<any>>> {}
+  interface Object<P> extends ProtobufExtension<AllPropertiesExtend<P, ProtobufExtension>> {}
 }
 
 extend(S.Object, {

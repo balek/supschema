@@ -5,7 +5,7 @@ import { callSuper } from '@supschema/core/utils.js';
 import { mapValues } from 'remeda';
 
 declare module '@supschema/common-types/object/Object.js' {
-  interface Object<P> extends JsonSchemaExtension<AllPropertiesExtend<P, JsonSchemaExtension<any>>> {}
+  interface Object<P> extends JsonSchemaExtension<AllPropertiesExtend<P, JsonSchemaExtension>> {}
 }
 
 extend(S.Object, {

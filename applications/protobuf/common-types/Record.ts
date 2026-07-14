@@ -5,7 +5,7 @@ import { genProtobufField, ProtobufExtension } from '../extension.js';
 declare module '@supschema/common-types/Record.js' {
   interface Record<K, V> extends ProtobufExtension<
     // oxlint-disable-next-line typescript/no-wrapper-object-types
-    K extends String ? (V extends ProtobufExtension ? true : false) : false
+    K extends S.String ? (V extends ProtobufExtension ? true : false) : false
   > {}
 }
 

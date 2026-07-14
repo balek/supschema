@@ -5,7 +5,7 @@ import { callSuper } from '@supschema/core/utils.js';
 import { mapValues } from 'remeda';
 
 declare module '@supschema/common-types/object/Object.js' {
-  interface Object<P> extends OpenApiExtension<AllPropertiesExtend<P, OpenApiExtension<any>>> {}
+  interface Object<P> extends OpenApiExtension<AllPropertiesExtend<P, OpenApiExtension>> {}
 }
 
 extend(S.Object, {
