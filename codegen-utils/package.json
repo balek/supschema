@@ -24,9 +24,6 @@
   "optionalDependencies": {
     "@vue/reactivity": "^3.5.39"
   },
-  "devDependencies": {
-    "@types/node": "^26.1.1"
-  },
   "author": "Alexey Balekhov <alexeybalekhov@gmail.com>",
   "repository": {
     "type": "git",
