@@ -105,7 +105,7 @@ export const withRegistry = <R extends Registry, Res>(
 export const generateRoot = <T>(fn: () => T) => {
   const { valueRef } = createRootNode(fn);
   let previousValue = valueRef.value;
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 4; i++) {
     const newValue = valueRef.value;
     if (newValue === previousValue) return newValue;
     previousValue = newValue;

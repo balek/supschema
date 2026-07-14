@@ -1,9 +1,12 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
 import { DataValue } from './DataValue.js';
 
-export interface EnumValueMeta {}
+export interface EnumValueMeta {
+  title?: string;
+  description?: string;
+}
 
-export interface Enum<V extends string> extends DataValue {
+export interface Enum<V extends string = string> extends DataValue {
   values: Record<V, EnumValueMeta>;
 }
 

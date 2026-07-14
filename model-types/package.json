@@ -1,0 +1,28 @@
+{
+  "name": "@supschema/model-types",
+  "version": "0.0.3",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "subschema-dev": "./index.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "subschema-dev": "./*",
+      "default": "./dist/*"
+    }
+  },
+  "dependencies": {
+    "@supschema/core": "workspace:*",
+    "@supschema/common-types": "workspace:*"
+  },
+  "author": "Alexey Balekhov <alexeybalekhov@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balek/supschema.git"
+  },
+  "license": "MIT"
+}

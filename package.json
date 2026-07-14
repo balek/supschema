@@ -12,6 +12,7 @@
     "codegen-utils",
     "core",
     "common-types",
+    "model-types",
     "applications/*",
     "schema-serialization",
     "self-source"

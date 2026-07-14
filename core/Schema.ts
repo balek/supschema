@@ -4,11 +4,14 @@ export type SchemaOptions<S extends Schema> = {
   [K in keyof S as K extends `$${string}` ? never : K]: S[K];
 };
 
-export interface SchemaType<S extends Schema = any, Args extends any[] = any[]> {
-  (...args: Args): S;
+interface SchemaTypeProperties<S extends Schema = any, Args extends any[] = any[]> {
   prototype: S;
   importMeta: ImportMeta;
   getConstructorArgs: (opts: SchemaOptions<S>) => Args;
+}
+
+export interface SchemaType<S extends Schema = any, Args extends any[] = any[]> extends SchemaTypeProperties<S, Args> {
+  (...args: Args): S;
 }
 
 export const defineConstructor = <S extends Schema, A extends unknown[]>(fn: (...args: A) => SchemaOptions<S>) =>
@@ -24,7 +27,7 @@ export function createType<Fn extends (...args: any[]) => Schema>(
   parentType: SchemaType,
   fn: Fn,
   getConstructorArgs: (opts: SchemaOptions<ReturnType<Fn>>) => Parameters<Fn>,
-): Fn & SchemaType<ReturnType<Fn>, Parameters<Fn>>;
+): Fn & SchemaTypeProperties<ReturnType<Fn>, Parameters<Fn>>;
 
 export function createType(
   importMeta: ImportMeta,

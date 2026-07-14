@@ -1,7 +1,7 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
-import { Object, ObjectProperties } from './object/Object.js';
+import { Object, ObjectProperties } from '@supschema/common-types/object/Object.js';
 
-export interface Model<Name extends string, P extends ObjectProperties> extends Object<P> {
+export interface Model<Name extends string = any, P extends ObjectProperties = any> extends Object<P> {
   name: Name;
   dbSchema?: string;
   key: (keyof P)[];

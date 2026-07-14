@@ -1,7 +1,7 @@
 import { defineConstructor, createType, SchemaOptions } from '@supschema/core';
 import { DataValue } from './DataValue.js';
 
-export interface Nullable<S extends DataValue> extends DataValue {
+export interface Nullable<S extends DataValue = DataValue> extends DataValue {
   schema: S;
 }
 

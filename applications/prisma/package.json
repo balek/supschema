@@ -1,0 +1,38 @@
+{
+  "name": "@supschema/prisma",
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "subschema-dev": "./index.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "subschema-dev": "./*",
+      "default": "./dist/*"
+    }
+  },
+  "dependencies": {
+    "@mrleebo/prisma-ast": "^0.16.0",
+    "@supschema/codegen-utils": "workspace:*",
+    "@supschema/core": "workspace:*",
+    "@supschema/model-types": "workspace:*",
+    "@vue/reactivity": "^3.5.39",
+    "remeda": "^2.39.0"
+  },
+  "optionalDependencies": {
+    "@supschema/common-types": "workspace:*"
+  },
+  "author": "Alexey Balekhov <alexeybalekhov@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balek/supschema.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@prisma/internals": "^7.8.0"
+  }
+}
