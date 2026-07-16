@@ -17,11 +17,13 @@
   },
   "dependencies": {
     "@supschema/core": "workspace:*",
-    "remeda": "^2.39.0",
-    "zod": "^4.1.11"
+    "remeda": "^2.39.0"
   },
   "optionalDependencies": {
     "@supschema/common-types": "workspace:*"
+  },
+  "peerDependencies": {
+    "zod": "*"
   },
   "author": "Alexey Balekhov <alexeybalekhov@gmail.com>",
   "repository": {
