@@ -1,0 +1,32 @@
+{
+  "name": "@supschema/zod",
+  "version": "0.0.4",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "supschema-dev": "./index.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "supschema-dev": "./*",
+      "default": "./dist/*"
+    }
+  },
+  "dependencies": {
+    "@supschema/core": "workspace:*",
+    "remeda": "^2.39.0",
+    "zod": "^4.1.11"
+  },
+  "optionalDependencies": {
+    "@supschema/common-types": "workspace:*"
+  },
+  "author": "Alexey Balekhov <alexeybalekhov@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balek/supschema.git"
+  },
+  "license": "MIT"
+}

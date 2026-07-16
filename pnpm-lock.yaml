@@ -131,6 +131,22 @@ importers:
         specifier: workspace:*
         version: link:../../common-types
 
+  applications/zod:
+    dependencies:
+      '@supschema/core':
+        specifier: workspace:*
+        version: link:../../core
+      remeda:
+        specifier: ^2.39.0
+        version: 2.39.0
+      zod:
+        specifier: ^4.1.11
+        version: 4.4.3
+    optionalDependencies:
+      '@supschema/common-types':
+        specifier: workspace:*
+        version: link:../../common-types
+
   codegen-utils:
     dependencies:
       '@alloy-js/core':
@@ -1583,6 +1599,9 @@ packages:
   xmlcreate@2.0.4:
     resolution: {integrity: sha512-nquOebG4sngPmGPICTS5EnxqhKbCmz5Ox5hsszI2T6U5qdrJizBc+0ilYSEjTSzU0yZcmvppztXe/5Al5fUwdg==}
 
+  zod@4.4.3:
+    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+
 snapshots:
 
   '@alloy-js/core@0.24.1':
@@ -2724,3 +2743,5 @@ snapshots:
   ws@8.21.0: {}
 
   xmlcreate@2.0.4: {}
+
+  zod@4.4.3: {}
