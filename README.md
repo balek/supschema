@@ -1,13 +1,13 @@
 # SupSchema
 
-Single metadata DSL for describing data across its full lifecycle: storage, transport, validation, documentation, and beyond.
+Single source of truth for all types of metadata: storage, transport, validation, documentation, and beyond. Implementation of [Super Schema Architecture](https://dev.to/balekhov/super-schema-architecture-5155).
 
 ## Basic usage
 
 Install common schema types and schema applications you want to use.
 
 ```bash
-npm install @supschema/common-types @supschema/openapi @supschema/prisma @supschema/validation
+npm install @supschema/common-types @supschema/model-types @supschema/openapi @supschema/prisma @supschema/zod
 ```
 
 Describe your data and generate specifications/code/documentation or use the description directly in JS runtime for validation/encoding/display/etc.
@@ -17,7 +17,7 @@ import { S } from '@supschema/common-types';
 import { Model, AutoIncrement } from '@supschema/model-types';
 import { HttpEndpoint, writeOpenApiSpec } from '@supschema/openapi';
 import { writePrismaSchemas } from '@supschema/prisma';
-import { validate } from '@supschema/validation';
+import '@supschema/zod';
 
 const User = Model({ name: 'User', key: ['id'] }, { id: AutoIncrement(S.Int32()), name: S.String({ minLength: 1 }) });
 const UserCreateData = S.Omit(User, ['id']);
@@ -39,9 +39,8 @@ await writeOpenApiSpec('openapi.yml', {
 });
 
 // Make runtime validations
-validate(UserCreateData, { name: ''});
+UserCreateData.$zod.safeParse({ name: '' });
 ```
-
 
 ## Concepts
 
@@ -94,7 +93,7 @@ declare module './path/to/Uuid.js' {
 extend(Uuid, {
   $yourMethod() {
     return crypto.randomUUID(); // Don't look for a reason for such method. This is a syntetic example to show the mechanics.
-  }
+  },
 });
 ```
 
@@ -127,7 +126,6 @@ extend(Uuid, {
   },
 });
 ```
-
 
 ### Schema modification
 
