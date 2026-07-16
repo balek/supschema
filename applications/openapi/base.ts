@@ -40,11 +40,16 @@ export const genOpenApiSchema = (key: string, schema: OpenApiExtended): OpenAPIV
   });
 
 export const generateOperationObject = (endpoint: HttpEndpoint): OpenAPIV3_1.OperationObject => ({
-  parameters: Object.entries(endpoint.parameters).map(([key, schema]) => ({
-    name: extractHttpParam(schema)?.name ?? key,
-    in: extractHttpParam(schema)?.type ?? 'query',
-    schema: genOpenApiSchema(key, schema),
-  })),
+  parameters: Object.entries(endpoint.parameters)
+    .filter(([key]) => key !== 'body')
+    .map(([key, schema]) => ({
+      name: extractHttpParam(schema)?.name ?? key,
+      in: extractHttpParam(schema)?.type ?? 'query',
+      schema: genOpenApiSchema(key, schema),
+    })),
+  ...(endpoint.parameters.body && {
+    requestBody: { content: { 'application/json': { schema: genOpenApiSchema('body', endpoint.parameters.body) } } },
+  }),
   responses: mapValues(endpoint.responses, (p, key) => ({ schema: genOpenApiSchema(key, p) })),
 });
 
