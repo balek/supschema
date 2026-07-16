@@ -1,18 +1,18 @@
 import { expect, it } from 'vitest';
-import { generateProtobufFilesOutput } from './index.js';
+import { generateProtobufFilesOutput, ProtobufField } from './index.js';
 import { S } from '@supschema/common-types';
 
 it('References', async () => {
   const Nested = S.SafeInt({ title: 'Name', minimum: 1 });
-  const Schema = S.Object({ a: Nested });
+  const Schema = S.Object({ a: ProtobufField(100, Nested) });
 
   const output = generateProtobufFilesOutput({
     'root.proto': {
-      Root: S.Object({ b: Schema }),
+      Root: S.Object({ b: ProtobufField(101, Schema) }),
     },
     'nested.proto': {
       Schema,
-      OtherSchema: S.Object({ c: Schema }),
+      OtherSchema: S.Object({ c: ProtobufField(100, Schema) }),
     },
   });
 
@@ -23,18 +23,18 @@ syntax = "proto3";
 
 message Root {
 
-    optional Schema b = 0;
+    optional Schema b = 101;
 }`,
     'nested.proto': `syntax = "proto3";
 
 message Schema {
 
-    optional int64 a = 0 [packed=false];
+    optional int64 a = 100 [packed=false];
 }
 
 message OtherSchema {
 
-    optional Schema c = 0;
+    optional Schema c = 100;
 }`,
   });
 });
@@ -44,17 +44,17 @@ it('Numeric types', async () => {
     generateProtobufFilesOutput({
       'numeric.proto': {
         Root: S.Object({
-          float32: S.Float32(),
-          float64: S.Float64(),
-          int8: S.Int8(),
-          int16: S.Int16(),
-          int32: S.Int32(),
-          int64: S.Int64(),
-          safeint: S.SafeInt(),
-          uint8: S.UInt8(),
-          uint16: S.UInt16(),
-          uint32: S.UInt32(),
-          uint64: S.UInt64(),
+          float32: ProtobufField(0, S.Float32()),
+          float64: ProtobufField(1, S.Float64()),
+          int8: ProtobufField(2, S.Int8()),
+          int16: ProtobufField(3, S.Int16()),
+          int32: ProtobufField(4, S.Int32()),
+          int64: ProtobufField(5, S.Int64()),
+          safeint: ProtobufField(6, S.SafeInt()),
+          uint8: ProtobufField(7, S.UInt8()),
+          uint16: ProtobufField(8, S.UInt16()),
+          uint32: ProtobufField(9, S.UInt32()),
+          uint64: ProtobufField(10, S.UInt64()),
         }),
       },
     }),
@@ -83,9 +83,9 @@ it('Array', async () => {
     generateProtobufFilesOutput({
       'array.proto': {
         Root: S.Object({
-          array: S.Array(S.String()),
-          twoDimensions: S.Array(S.Array(S.String())),
-          threeDimensions: S.Array(S.Array(S.Array(S.String()))),
+          array: ProtobufField(0, S.Array(S.String())),
+          twoDimensions: ProtobufField(1, S.Array(S.Array(S.String()))),
+          threeDimensions: ProtobufField(2, S.Array(S.Array(S.Array(S.String())))),
         }),
       },
     }),
@@ -121,7 +121,7 @@ it('Tuple', async () => {
     generateProtobufFilesOutput({
       'tuple.proto': {
         Root: S.Object({
-          example: S.Tuple([S.Boolean(), S.String(), S.Null()]),
+          example: ProtobufField(0, S.Tuple([S.Boolean(), S.String(), S.Null()])),
         }),
       },
     }),
@@ -149,7 +149,7 @@ it('Union', async () => {
     generateProtobufFilesOutput({
       'union.proto': {
         Root: S.Object({
-          example: S.Union([S.Boolean(), S.String()]),
+          example: ProtobufField(0, S.Union([S.Boolean(), S.String()])),
         }),
       },
     }),
@@ -177,7 +177,7 @@ it('Nullable', async () => {
     generateProtobufFilesOutput({
       'nullable.proto': {
         Root: S.Object({
-          example: S.Nullable(S.String()),
+          example: ProtobufField(0, S.Nullable(S.String())),
         }),
       },
     }),
@@ -207,7 +207,7 @@ it('Record', async () => {
     generateProtobufFilesOutput({
       'record.proto': {
         Root: S.Object({
-          example: S.Record(S.String(), S.Object({ a: S.Boolean() })),
+          example: ProtobufField(0, S.Record(S.String(), S.Object({ a: ProtobufField(0, S.Boolean()) }))),
         }),
       },
     }),
@@ -232,7 +232,7 @@ it('Enum', async () => {
       'enum.proto': {
         RootEnum: S.Enum({ a: {}, b: {} }),
         Root: S.Object({
-          example: S.Enum({ c: {}, d: {} }),
+          example: ProtobufField(0, S.Enum({ c: {}, d: {} })),
         }),
       },
     }),

@@ -1,5 +1,5 @@
 import { computed } from '@vue/reactivity';
-import { Schema } from '@supschema/core';
+import { modifyOpts, Schema } from '@supschema/core';
 import { capitalize, mapValues } from 'remeda';
 import { getRegistry } from '@supschema/codegen-utils/astGeneration/registry.js';
 import { Root, INamespace, IField, AnyNestedObject } from 'protobufjs';
@@ -25,9 +25,12 @@ export interface ProtobufExtended {
   $protobuf: AstFieldGenerator<Omit<IField, 'id'>>;
 }
 
-export interface IRootNamespace extends INamespace {
-  imports: string[];
+export interface ProtobufField {
+  protobufNumber: number;
 }
+
+export const ProtobufField = <S extends Schema>(protobufNumber: number, schema: S) =>
+  modifyOpts(schema, { protobufNumber } as never) as S & ProtobufField;
 
 export const registerImport = (path: string) => getRegistry(ImportRegistry).register(path);
 
@@ -75,6 +78,9 @@ export const define = (namePostfix: string, fn: (name: string) => AnyNestedObjec
   return name;
 };
 
+export interface IRootNamespace extends INamespace {
+  imports: string[];
+}
 export const generateProtobufJson = (schemas: Record<string, ProtobufExtended>): IRootNamespace => {
   const {
     registry: { imports },

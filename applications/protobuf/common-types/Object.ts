@@ -1,14 +1,21 @@
 import { extend } from '@supschema/core';
 import { S } from '@supschema/common-types';
-import { catchDefinitions, define, genProtobufField, ProtobufExtended, ProtobufExtension } from '../base.js';
+import {
+  catchDefinitions,
+  define,
+  genProtobufField,
+  ProtobufExtended,
+  ProtobufExtension,
+  ProtobufField,
+} from '../base.js';
 import { callSuper } from '@supschema/core/utils.js';
-import { mapToObj, mapValues } from 'remeda';
+import { mapValues } from 'remeda';
 
 declare module '@supschema/common-types/object/Object.js' {
-  interface Object<P> extends ProtobufExtension<AllPropertiesExtend<P, ProtobufExtended>> {}
+  interface Object<P> extends ProtobufExtension<AllPropertiesExtend<P, ProtobufExtended & ProtobufField>> {}
 }
 
-type ExtendedObject = S.Object<{ [K: string]: S.DataValue & ProtobufExtension }>;
+type ExtendedObject = S.Object<{ [K: string]: S.DataValue & ProtobufExtension & ProtobufField }>;
 extend(S.Object, {
   get $protobuf(): ExtendedObject['$protobuf'] | undefined {
     if (Object.values(this.properties).some((p) => !p.$protobuf)) return;
@@ -17,12 +24,12 @@ extend(S.Object, {
       const ref =
         baseRef?.ref ??
         define('', () => {
-          const { result, definitions } = catchDefinitions(() =>
-            mapValues(this.properties, (s, key) => genProtobufField(key, s)),
+          const { result: fields, definitions } = catchDefinitions(() =>
+            mapValues(this.properties, (s, key) => ({ ...genProtobufField(key, s), id: s.protobufNumber })),
           );
 
           return {
-            fields: mapToObj(Object.entries(result), ([key, field], i) => [key, { ...field, id: i }]),
+            fields,
             nested: definitions,
           };
         });
