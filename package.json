@@ -22,7 +22,8 @@
     "lint": "oxlint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "build": "pnpm -r exec tsc --outDir dist -d"
+    "build": "pnpm -r exec tsc --outDir dist -d",
+    "buildAndPublish": "pnpm build && pnpm -r publish"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
