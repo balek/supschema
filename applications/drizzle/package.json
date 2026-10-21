@@ -1,0 +1,39 @@
+{
+  "name": "@supschema/drizzle",
+  "version": "0.0.6",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "supschema-dev": "./index.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "supschema-dev": "./*",
+      "default": "./dist/*"
+    }
+  },
+  "dependencies": {
+    "@alloy-js/core": "^0.24.1",
+    "@alloy-js/typescript": "^0.24.0",
+    "@supschema/codegen-utils": "workspace:*",
+    "@supschema/core": "workspace:*",
+    "@supschema/model-types": "workspace:*",
+    "remeda": "^2.39.0"
+  },
+  "optionalDependencies": {
+    "@supschema/common-types": "workspace:*"
+  },
+  "author": "Alexey Balekhov <alexeybalekhov@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balek/supschema.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "drizzle-kit": "^0.31.11",
+    "drizzle-orm": "^0.45.4"
+  }
+}

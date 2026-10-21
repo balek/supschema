@@ -47,7 +47,7 @@ export const ModelRelation = createType(
       // toType: Mod2,
       opts?: Omit<
         SchemaOptions<ModelRelation<Model1, Name1, Model2, Name2>>,
-        'model' | 'name' | 'fields' | 'otherModel' | 'otherName' | 'otherFields'
+        'model' | 'name' | 'fields' | 'otherModel' | 'otherName' | 'otherFields' | 'rev'
       >,
     ): SchemaOptions<ModelRelation<Model1, Name1, Model2, Name2>> => ({
       model: model,
